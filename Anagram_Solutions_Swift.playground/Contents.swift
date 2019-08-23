@@ -22,4 +22,19 @@ func isAnagrame(a: String, b: String) -> Bool {
 }
 print(isAnagrame(a: "night", b: "thing"))
 
-
+func isAnagrameUsingXOR(s1: String, s2: String)-> Bool {
+    if s1.count != s2.count {
+        return false
+    }
+    var value: UInt8 = 0
+    for (c1, c2) in zip(s1, s2){
+        print("Before", value, c1.asciiValue ?? 0)
+        value = value ^ (c1.asciiValue ?? 0)
+        print("After", value, c1.asciiValue ?? 0)
+        value = value ^ (c2.asciiValue ?? 0)
+    }
+    return value == 0
+}
+print("Anagrame using \(isAnagrameUsingXOR(s1: "night", s2: "thing"))")
+//Time Complexity: O(n)
+//Space Complexity: O(1)
